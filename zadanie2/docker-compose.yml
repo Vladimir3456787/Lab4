@@ -1,0 +1,64 @@
+services:
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: feast
+      POSTGRES_PASSWORD: feast
+      POSTGRES_DB: feast
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  feast-server:
+    build: .
+    ports:
+      - "6566:6566"
+    depends_on:
+      - redis
+      - postgres
+    volumes:
+      - ./feature_repo:/app/feature_repo
+      - ./data:/app/data
+      - ./artifacts:/app/artifacts
+    command: >
+      sh -c "echo 'Ожидание запуска PostgreSQL и Redis...' &&
+             sleep 25 &&
+             echo 'Запуск Feast Server...' &&
+             feast -c /app/feature_repo serve --port 6566"
+
+  task2-feature-store:
+    build: .
+    depends_on:
+      - feast-server
+    volumes:
+      - ./src:/app/src
+      - ./feature_repo:/app/feature_repo
+      - ./data:/app/data
+      - ./artifacts:/app/artifacts
+      - ./local_data:/app/local_data
+    environment:
+      - FEAST_REDIS_HOST=redis
+      - FEAST_REDIS_PORT=6379
+      - FEAST_POSTGRES_HOST=postgres
+      - FEAST_POSTGRES_PORT=5432
+    command: >
+      sh -c "echo 'Запуск задания 2: Feature Store' &&
+             echo '====================================' &&
+             echo '1. Подготовка данных...' &&
+             python /app/src/data/prepare_feast_data.py &&
+             echo '2. Применение определений фич...' &&
+             cd /app/feature_repo && feast apply &&
+             echo '3. Материализация фич...' &&
+             feast materialize 2019-10-01 2019-10-31 &&
+             echo '4. Тестирование согласованности...' &&
+             python /app/src/tests/test_consistency.py &&
+             echo ' ЗАДАНИЕ 2 ВЫПОЛНЕНО!'"
+
+volumes:
+  postgres_data:

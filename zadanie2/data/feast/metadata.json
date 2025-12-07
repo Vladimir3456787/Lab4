@@ -1,0 +1,44 @@
+{
+  "preparation_date": "2025-12-07T11:50:26.820518",
+  "user_features_count": 20384,
+  "product_features_count": 20621,
+  "interaction_features_count": 65919,
+  "feature_columns": {
+    "user_stats": [
+      "user_id",
+      "event_timestamp",
+      "user_total_events",
+      "user_total_purchases",
+      "user_total_views",
+      "user_total_carts",
+      "user_avg_price",
+      "user_purchase_frequency",
+      "user_session_count",
+      "days_since_last_activity",
+      "created_timestamp"
+    ],
+    "product_stats": [
+      "product_id",
+      "event_timestamp",
+      "product_total_views",
+      "product_total_purchases",
+      "product_total_carts",
+      "product_view_to_purchase_rate",
+      "product_avg_price",
+      "product_popularity_score",
+      "days_since_last_view",
+      "created_timestamp"
+    ],
+    "interactions": [
+      "user_id",
+      "product_id",
+      "event_timestamp",
+      "user_product_view_count",
+      "user_product_cart_count",
+      "user_product_purchase_count",
+      "user_product_last_interaction_hours",
+      "user_product_preference_score",
+      "created_timestamp"
+    ]
+  }
+}

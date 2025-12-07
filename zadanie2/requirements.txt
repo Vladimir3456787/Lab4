@@ -1,0 +1,6 @@
+feast==0.31.0
+pandas==1.5.3
+numpy==1.24.3
+pyarrow==11.0.0
+redis==4.5.4
+psycopg2-binary==2.9.6
