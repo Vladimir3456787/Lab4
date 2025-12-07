@@ -1,0 +1,43 @@
+﻿services:
+  mlflow:
+    build: ./mlflow
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./mlflow:/mlflow
+      - ./artifacts:/artifacts
+      - ./data:/data
+    environment:
+      - MLFLOW_TRACKING_URI=http://mlflow:5000
+    command: >
+      sh -c "mlflow server 
+      --backend-store-uri sqlite:///mlflow.db 
+      --default-artifact-root /mlflow/artifacts 
+      --host 0.0.0.0 
+      --port 5000"
+
+  task1-prototyping:
+    build: .
+    depends_on:
+      - mlflow
+    volumes:
+      - ./src:/app/src
+      - ./artifacts:/app/artifacts
+      - ./data:/app/data
+      # ДОБАВЛЯЕМ ЭТУ СТРОКУ: монтируем локальную папку с данными в контейнер
+      - ./local_data:/app/local_data
+    environment:
+      - MLFLOW_TRACKING_URI=http://mlflow:5000
+    command: >
+      sh -c "echo 'Ожидаем запуск MLflow...' && 
+             sleep 20 && 
+             echo 'Запуск загрузки данных из локального файла...' && 
+             python /app/src/data/downloader.py && 
+             echo 'Запуск EDA анализа...' && 
+             python /app/src/eda/analysis.py && 
+             echo 'Запуск обучения 7 моделей...' && 
+             python /app/src/models/trainer.py && 
+             echo ' ЗАДАНИЕ 1 ВЫПОЛНЕНО!' && 
+             echo ' Лучшая модель определена' && 
+             echo ' Результаты в MLflow: http://localhost:5000' && 
+             echo ' Артефакты в папке: ./artifacts/'"

@@ -1,0 +1,44 @@
+{
+  "dataset_info": {
+    "shape": [
+      199862,
+      12
+    ],
+    "columns": [
+      "event_time",
+      "event_type",
+      "product_id",
+      "category_id",
+      "brand",
+      "price",
+      "user_id",
+      "user_session",
+      "hour",
+      "day_of_week",
+      "day_of_month",
+      "is_weekend"
+    ],
+    "date_range": {
+      "start": "2019-10-01T00:00:00+00:00",
+      "end": "2019-10-01T06:06:57+00:00"
+    }
+  },
+  "event_distribution": {
+    "view": 193355,
+    "purchase": 3639,
+    "cart": 2868
+  },
+  "user_analysis": {
+    "unique_users": 38440,
+    "events_per_user_avg": 5.1993236212278875
+  },
+  "product_analysis": {
+    "unique_products": 30223,
+    "price_stats": {
+      "mean": 286.83757137424817,
+      "std": 359.3375880236204,
+      "min": 0.0,
+      "max": 2574.07
+    }
+  }
+}

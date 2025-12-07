@@ -1,0 +1,17 @@
+feature,importance
+user_purchase_rate,0.476233922068377
+user_purchase_count,0.37753268627950476
+product_id_freq,0.05118215566402169
+user_price_std,0.024850439986059753
+user_event_count,0.020172088849145838
+category_id_freq,0.012795038651174442
+brand_freq,0.009282586791227313
+hour,0.0074966734224069555
+user_price_mean,0.006397091683992944
+price,0.0063687166939561555
+product_id_is_popular,0.004045547503185862
+brand_is_popular,0.0020546863850265567
+category_id_is_popular,0.001588366021920822
+day_of_week,0.0
+day_of_month,0.0
+is_weekend,0.0

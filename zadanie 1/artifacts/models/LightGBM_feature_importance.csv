@@ -1,0 +1,17 @@
+feature,importance
+product_id_freq,950
+user_purchase_rate,933
+user_event_count,794
+brand_freq,593
+price,542
+category_id_freq,537
+hour,521
+user_price_std,420
+user_price_mean,372
+user_purchase_count,283
+category_id_is_popular,17
+brand_is_popular,15
+product_id_is_popular,5
+day_of_week,0
+day_of_month,0
+is_weekend,0

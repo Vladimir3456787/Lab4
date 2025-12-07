@@ -1,0 +1,25 @@
+{
+  "execution_date": "2025-12-03T03:32:04.300652",
+  "models_evaluated": 2,
+  "best_model": "LogisticRegression",
+  "best_roc_auc": 0.5000651841314104,
+  "best_accuracy": 0.5021333333333333,
+  "all_results": [
+    {
+      "model": "LogisticRegression",
+      "accuracy": 0.5021333333333333,
+      "roc_auc": 0.5000651841314104,
+      "f1_score": 0.16465324384787475,
+      "inference_time_ms": 15.0
+    },
+    {
+      "model": "RandomForest",
+      "accuracy": 0.7886,
+      "roc_auc": 0.4742266308194441,
+      "f1_score": 0.10499576629974598,
+      "inference_time_ms": 15.0
+    }
+  ],
+  "requirements_check": {
+    "latency_under_100ms": true,
+    "accuracy_over_85pct": 
