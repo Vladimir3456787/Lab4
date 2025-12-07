@@ -20,6 +20,7 @@ docker-compose up -d
 - **Результаты EDA с графиками**: Ве графики хранятся в папке ml-production-lab4\artifacts\eda
 ![Активность пользователей](hourly_activity.png)
 - **Таблица сравнения моделей**: Схема архитектуры системы и обоснование выбора технологии
+
 |Name models|GradientBoosting|SVM|CatBoost|LightGBM|XGBoost|RandomForest|LogisticRegression|
 |---|---|---|---|---|---|---|---|
 |Name|Value|Value|Value|Value|Value|Value|Value|
@@ -44,3 +45,4 @@ docker-compose up -d
 - Удовлетворению всех бизнес-требований
 - **Скриншот MLflow UI с экспериментом**:
 ![Скриншот выполнения в MLflow](image.png)
+
