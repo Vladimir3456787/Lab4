@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:v2.11.0
+    ports:
+      - "5000:5000"
+    environment:
+      - MLFLOW_TRACKING_URI=http://mlflow:5000
+      - MLFLOW_ARTIFACT_ROOT=/mlflow/artifacts
+      - MLFLOW_SERVER_HOST=0.0.0.0
+    volumes:
+      - mlflow_data:/mlflow
+      - ./artifacts:/app/artifacts
+    command: >
+      mlflow server
+        --backend-store-uri sqlite:///mlflow.db
+        --default-artifact-root /mlflow/artifacts
+        --host 0.0.0.0
+        --port 5000
+
+  inference-api:
+    build: .
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mlflow
+    environment:
+      - MLFLOW_TRACKING_URI=http://mlflow:5000
+      - MODEL_NAME=EcommerceRecommendationModel
+      - MODEL_STAGE=Production
+      - FEATURE_STORE_PATH=/app/local_data/user_features.csv
+    volumes:
+      - ./src:/app/src
+      - ./config:/app/config
+      - ./artifacts:/app/artifacts
+      - ./local_data:/app/local_data
+      - ./scripts:/app/scripts
+    command: >
+      uvicorn src.api.main:app
+        --host 0.0.0.0
+        --port 8000
+        --reload
+        --workers 2
+
+volumes:
+  mlflow_data:

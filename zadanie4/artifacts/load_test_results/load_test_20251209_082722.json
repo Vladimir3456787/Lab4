@@ -1,0 +1,26 @@
+{
+  "test_timestamp": "2025-12-09T08:27:22.634744",
+  "total_requests": 20000,
+  "total_time_seconds": 52.486517667770386,
+  "successful_requests": 20000,
+  "failed_requests": 0,
+  "success_rate": 1.0,
+  "throughput_rps": 381.0502370646148,
+  "latency_ms": {
+    "mean": 153.62227412462235,
+    "p50": 139.86527919769287,
+    "p95": 273.48146438598627,
+    "p99": 394.9948215484616,
+    "min": 3.1604766845703125,
+    "max": 432.44171142578125,
+    "std": 67.71715199080946
+  },
+  "errors_by_type": {
+    "timeout": 0,
+    "connection_error": 0,
+    "server_error": 0,
+    "client_error": 0,
+    "other": 0
+  },
+  "concurrent_users": 1
+}

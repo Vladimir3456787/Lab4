@@ -1,0 +1,38 @@
+api:
+  host: "0.0.0.0"
+  port: 8000
+  workers: 2
+  reload: true
+  log_level: "info"
+
+mlflow:
+  tracking_uri: "http://mlflow:5000"
+  model_name: "EcommerceRecommendationModel"
+  model_stage: "Production"
+
+feature_store:
+  path: "/app/local_data/user_features.csv"
+  cache_size: 1000
+  refresh_interval_seconds: 300
+
+monitoring:
+  latency_window_size: 1000
+  metrics_export_interval: 30
+  enable_prometheus: true
+
+deployment:
+  canary:
+    initial_traffic_percent: 5
+    max_traffic_percent: 100
+    evaluation_window_requests: 100
+    latency_threshold_ratio: 1.2
+  shadow:
+    enabled: true
+    queue_size: 10000
+    worker_count: 2
+
+load_testing:
+  concurrent_users: [10, 50, 100]
+  requests_per_user: 100
+  think_time_seconds: 0.1
+  test_duration_seconds: 300
