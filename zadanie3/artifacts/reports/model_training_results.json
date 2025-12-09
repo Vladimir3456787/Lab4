@@ -1,0 +1,32 @@
+[
+  {
+    "model":"XGBoost",
+    "run_id":"6511ca95ec0b4fbeb7a1599f7483fa17",
+    "accuracy":0.9424,
+    "roc_auc":0.9594734173,
+    "f1_score":0.957934432,
+    "precision":0.979162887,
+    "recall":0.9424,
+    "training_time_seconds":22.4486279488,
+    "inference_time_ms":5.7059144974,
+    "true_negatives":41894,
+    "false_positives":2315,
+    "false_negatives":277,
+    "true_positives":514
+  },
+  {
+    "model":"RandomForest",
+    "run_id":"3566404226c84e62a9d0f134e192e686",
+    "accuracy":0.9316888889,
+    "roc_auc":0.9563473055,
+    "f1_score":0.9520884365,
+    "precision":0.9807165281,
+    "recall":0.9316888889,
+    "training_time_seconds":21.2143785954,
+    "inference_time_ms":57.8907513618,
+    "true_negatives":41334,
+    "false_positives":2875,
+    "false_negatives":199,
+    "true_positives":592
+  }
+]

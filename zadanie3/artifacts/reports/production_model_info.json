@@ -1,0 +1,7 @@
+{
+  "model_name": "EcommerceRecommendationModel",
+  "version": "1",
+  "stage": "Production",
+  "loaded_successfully": true,
+  "load_timestamp": "2025-12-09T04:10:03.950947"
+}

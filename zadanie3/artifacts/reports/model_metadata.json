@@ -1,0 +1,14 @@
+{
+  "model_type": "XGBoost",
+  "training_date": "2025-12-09T04:10:02.341812",
+  "metrics": {
+    "roc_auc": 0.9594734172547084,
+    "accuracy": 0.9424,
+    "f1_score": 0.9579344320291044,
+    "inference_time_ms": 5.705914497375488
+  },
+  "training_parameters": {
+    "n_features": 0,
+    "training_samples": 0
+  }
+}

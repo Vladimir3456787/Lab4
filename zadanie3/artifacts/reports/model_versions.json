@@ -1,0 +1,9 @@
+[
+  {
+    "version": "1",
+    "stage": "Production",
+    "run_id": "6511ca95ec0b4fbeb7a1599f7483fa17",
+    "status": "READY",
+    "description": "\u041b\u0443\u0447\u0448\u0430\u044f \u043c\u043e\u0434\u0435\u043b\u044c: XGBoost. AUC: 0.9595"
+  }
+]
