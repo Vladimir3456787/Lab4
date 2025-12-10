@@ -1,0 +1,48 @@
+﻿alerts:
+  data_drift:
+    enabled: true
+    channels:
+      - slack
+      - email
+    thresholds:
+      psi: 0.2
+      ks: 0.1
+      missing_values: 0.1
+      range_violations: 1
+
+  model_performance:
+    enabled: true
+    channels:
+      - slack
+    thresholds:
+      accuracy_drop: 0.1
+      auc_drop: 0.05
+      f1_score: 0.7
+      concept_drift: true
+
+  retrain:
+    enabled: true
+    channels:
+      - slack
+      - email
+    thresholds:
+      data_drift: 0.3
+      accuracy_drop: 0.15
+      model_age_days: 30
+
+  system:
+    enabled: true
+    channels:
+      - slack
+    thresholds:
+      disk_usage: 0.8
+      memory_usage: 0.8
+      cpu_usage: 0.8
+
+templates:
+  slack:
+    critical_color: "#FF0000"
+    warning_color: "#FFA500"
+    info_color: "#36A64F"
+  email:
+    subject_prefix: "[ML Monitoring]"

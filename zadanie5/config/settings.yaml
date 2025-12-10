@@ -1,0 +1,38 @@
+﻿monitoring:
+  data_drift:
+    psi_threshold: 0.2
+    ks_threshold: 0.1
+    missing_values_threshold: 0.1
+  model_performance:
+    accuracy_drop_threshold: 0.1
+    precision_drop_threshold: 0.15
+    recall_drop_threshold: 0.15
+    f1_drop_threshold: 0.1
+    auc_drop_threshold: 0.05
+    prediction_drift_threshold: 0.2
+  retrain:
+    data_drift_threshold: 0.3
+    accuracy_drop_threshold: 0.15
+    weekly_retrain_day: 0  # Monday
+    min_retrain_interval_days: 7
+    max_retrain_age_days: 30
+    min_new_data_samples: 1000
+
+mlflow:
+  tracking_uri: http://mlflow:5000
+  model_name: EcommerceRecommendationModel
+  model_stage: Production
+
+alerting:
+  slack_webhook_url: ${SLACK_WEBHOOK_URL}
+  email_notifications: ${EMAIL_NOTIFICATIONS}
+  smtp_server: ${SMTP_SERVER}
+  smtp_port: ${SMTP_PORT}
+  smtp_username: ${SMTP_USERNAME}
+  smtp_password: ${SMTP_PASSWORD}
+  email_from: ${EMAIL_FROM}
+  email_to: ${EMAIL_TO}
+
+data:
+  reference_data_path: /app/artifacts/reference_data/reference.csv
+  current_data_path: /app/artifacts/current_data/current.csv

@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:v2.11.0
+    ports:
+      - "5000:5000"
+    environment:
+      - MLFLOW_TRACKING_URI=http://mlflow:5000
+      - MLFLOW_ARTIFACT_ROOT=/mlflow/artifacts
+      - MLFLOW_SERVER_HOST=0.0.0.0
+    volumes:
+      - mlflow_data:/mlflow
+      - ./artifacts:/app/artifacts
+    command: >
+      mlflow server
+        --backend-store-uri sqlite:///mlflow.db
+        --default-artifact-root /mlflow/artifacts
+        --host 0.0.0.0
+        --port 5000
+
+  monitoring:
+    build: .
+    depends_on:
+      - mlflow
+    environment:
+      - MLFLOW_TRACKING_URI=http://mlflow:5000
+      - MODEL_NAME=EcommerceRecommendationModel
+      - MODEL_STAGE=Production
+      - SLACK_WEBHOOK_URL=${SLACK_WEBHOOK_URL:-}
+      - EMAIL_NOTIFICATIONS=${EMAIL_NOTIFICATIONS:-false}
+    volumes:
+      - ./src:/app/src
+      - ./config:/app/config
+      - ./artifacts:/app/artifacts
+      - ./local_data:/app/local_data
+      - ./scripts:/app/scripts
+    command: >
+      python /app/scripts/schedule_monitoring.py
+
+volumes:
+  mlflow_data:
